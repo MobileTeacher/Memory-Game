@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_width">64dp</dimen>
+    <dimen name="column_spacing">8dp</dimen>
+    <dimen name="card_padding">4dp</dimen>
+    <dimen name="default_spacing">8dp</dimen>
+</resources>

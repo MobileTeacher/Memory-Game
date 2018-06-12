@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#000"
+    android:padding="4dp"
+    app:cardCornerRadius="10dp">
+
+    <ImageView
+        android:id="@+id/game_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:padding="8dp"
+        android:src="@drawable/ic_lua"
+        />
+
+</merge>
