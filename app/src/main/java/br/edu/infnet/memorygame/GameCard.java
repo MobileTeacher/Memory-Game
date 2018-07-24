@@ -38,6 +38,10 @@ public class GameCard extends CardView {
         //memoryImage.setImageResource(R.drawable.ic_android);
     }
 
+    public boolean isFaceUp(){
+        return faceUp;
+    }
+
     private void syncFace(){
         if (faceUp){
             memoryImage.setImageResource(frontImage);
