@@ -7,22 +7,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
     boolean[] faceUpTable;
     TableLayout gameArea;
+    GridView gameGrid;
     int ncols = 4;
     int nrows = 4;
+    int totalCards = 32;
     MediaPlayer bkplayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_gamegrid);
 
         if (savedInstanceState != null){
             faceUpTable = savedInstanceState.getBooleanArray("faceUpState");
@@ -73,14 +80,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        Log.d("SAVE", "ONSAVEINSTACE");
+        /*Log.d("SAVE", "ONSAVEINSTACE");
         for (int i = 0; i < nrows; i++){
             TableRow row = (TableRow) gameArea.getChildAt(i);
             for (int j = 0; j < ncols; j++){
                 faceUpTable[i*ncols + j] = ((GameCard)row.getChildAt(j)).isFaceUp();
             }
         }
-        outState.putBooleanArray("faceUpState", faceUpTable);
+        outState.putBooleanArray("faceUpState", faceUpTable);*/
         outState.putInt("musicPos", bkplayer.getCurrentPosition());
     }
 
@@ -92,7 +99,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //faceUpTable = savedInstanceState.getBooleanArray("faceUpState");
     }
 
-    private void initializeCards(){
+    /*private void initializeCards(){
         gameArea = findViewById(R.id.gameArea);
         for (int i = 0; i < gameArea.getChildCount(); i++){
             TableRow row = (TableRow) gameArea.getChildAt(i);
@@ -105,6 +112,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 card.setOnClickListener(this);
             }
         }
+    }*/
+
+    private void initializeCards(){
+        gameGrid = findViewById(R.id.gamegrid);
+        List<Integer> cardsId = new ArrayList<>();
+        for (int i = 0; i < totalCards; i++){
+            cardsId.add(R.drawable.ic_lua);
+        }
+        CardAdapter adapter = new CardAdapter(this, cardsId);
+        gameGrid.setAdapter(adapter);
+        gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ((GameCard) view).flip();
+            }
+        });
+        //card.setClickable(true);
+        //card.setOnClickListener(this);
     }
 
     @Override
