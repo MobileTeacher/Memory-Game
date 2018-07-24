@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         initializeCards();
 
         bkplayer = MediaPlayer.create(this, R.raw.water_world);
+        bkplayer.setLooping(true);
     }
 
     @Override
